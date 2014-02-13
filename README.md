@@ -3,8 +3,19 @@ deseret.in
 
 A deseret alphabet translator written in PHP. 
 
+_______________
+ACKNOWLEGEMENTS
+_______________
 
+\##Date:  9-7-94
+
+\##The Carnegie Mellon Pronouncing Dictionary [cmudict.0.2] is Copyright 1993 by Carnegie Mellon University. Use of this dictionary, for any research or commercial purpose, is completely unrestricted.  If you make use of or
+redistribute this material, we would appreciate acknowlegement of its origin.\##
+
+
+_______
 LICENSE 
+_______
 
   GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
