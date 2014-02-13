@@ -1,89 +1,152 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset="utf-8" />  
+<title>Deseret Alphabet Translator</title>  
+  
+<link rel="stylesheet" href="style.css" type="text/css" />  
 
+<script type="text/javascript">
 
-<form action="index2.php" method="GET">
-  <table>
-    <tr>
-      <td>Word:</td>
-      <td><input type="text" name="userWord"></td>
-    </tr>
-<form> 
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17722321-3']);
+  _gaq.push(['_trackPageview']);
 
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>  
+  
+<body id="index" class="home">  
+
+<h1>Deseret Alphabet Translator (BETA)</h1>
+<h2>𐐔𐐇𐐝𐐍𐐡𐐇𐐓 𐐈𐐢𐐙𐐆𐐒𐐇𐐓 𐐓𐐡𐐈𐐤𐐝𐐢𐐁𐐓𐐆𐐡 (𐐒𐐁𐐓𐐆)</h2>
+
+<p>Type a word or phrase below.</p>
+
+<div class="input">
+	<form action="index.php" method="GET">
+  		<table>
+    		<tr>
+      			<td>Enter Text:</td>
+      			<td><input type="text" name="input" size="50"></td>
+      			<td><input type="submit" value="Submit" /></td>
+    		</tr>
+    	</table>
+	</form> 
+</div>
+
+<div class="result">
 
 <?php
-              
-//echo "&#66579;";              
 
-mysql_connect("localhost", "root", "root") or die(mysql_error()); 
-mysql_select_db("pron") or die(mysql_error()); 
+include 'funcs.php';
 
-$userword = $_GET['userWord'];
+//Set up variables
+$userInput = $_GET['input'];
+$englishSentence = explode(" ", $userInput);
+$ipaSentence = array();
+$deseretSentence = array();
 
-$query = "SELECT * FROM wordlist WHERE word = '$userword';";
-$result = mysql_query($query) or die('Error, query failed');
+//Die if the string is too long
+if (strlen($userInput) > 140) {
+	die("Take it easy! I can only take so much at once!");
+}
 
-$row = mysql_fetch_array( $result );
-$data = explode("/", $row[1]);
+//Loop through each word
+foreach ($englishSentence as $userWord) {
 
-echo "Word: ".$userword."<br />";
-echo "IPA: ".$row[1]."<br />";
-echo "Deseret: ";
+	//Get the IPA translation and add to sentence array
+	$ipaWord = getIPA($userWord);
+	if (empty($ipaWord[1])) {
+		
+		$ipaWord = checkPlural($userWord);
+		if (empty($ipaWord[1])) {		
+			array_push($ipaSentence, array("?",$userWord));
+		} else {
+			array_push($ipaSentence, $ipaWord);
+		}
+	} else {
+		array_push($ipaSentence, $ipaWord);
+	}
 
-foreach ($data as $value) {
+	//Get the Deseret translation - add to sentence array
+	if (empty($ipaWord[1])) {
+		array_push($deseretSentence, array($userWord));
+	} else {
+		$deseretWord = getDeseret($ipaWord);
+		array_push($deseretSentence, $deseretWord);
+	}
 	
-	$value = rtrim($value);
-	$value = trim($value, ",'");
-	//echo $value."(";
-	echo ($value == "&") ? "&#66568;" : "";
-	echo ($value == "[@]") ? "(?)" : "";
-	echo ($value == "A") ? "&#66562;" : "";
-	echo ($value == "eI") ? "&#66561;" : "";
-	//echo ($value == "@") ? "&#66566;" : "";
-	echo ($value == "-") ? "(?)" : "";
-	echo ($value == "b") ? "&#66578;" : "";
-	echo ($value == "tS") ? "&#66581;" : "";
-	echo ($value == "d") ? "&#66580;" : "";
-	echo ($value == "E") ? "&#66567;" : "";
-	echo ($value == "i") ? "&#66560;" : "";
-	echo ($value == "f") ? "&#66585;" : "";
-	echo ($value == "g") ? "&#66584;" : "";
-	echo ($value == "h") ? "&#66576;" : "";
-	echo ($value == "hw") ? "&#66574;" : "";
-	echo ($value == "I") ? "&#66566;" : "";
-	echo ($value == "aI") ? "&#66572;" : "";
-	echo ($value == "dZ") ? "&#66582;" : "";
-	echo ($value == "k") ? "&#66583;" : "";
-	echo ($value == "l") ? "&#66594;" : "";
-	echo ($value == "m") ? "&#66595;" : "";
-	echo ($value == "N") ? "&#66596;&#66584;" : ""; //(?)
-	echo ($value == "n") ? "&#66596;" : "";
-	echo ($value == "Oi") ? "&#66598;" : "";
-	echo ($value == "A") ? "&#66569;" : "";
-	echo ($value == "AU") ? "&#66573;" : "";
-	echo ($value == "O") ? "&#66563;" : "";
-	echo ($value == "oU") ? "&#66564;" : "";
-	echo ($value == "u") ? "&#66565;" : "";
-	echo ($value == "U") ? "&#66571;" : "";
-	echo ($value == "p") ? "&#66577;" : "";
-	echo ($value == "r") ? "&#66593;" : "";
-	echo ($value == "S") ? "&#66591;" : "";
-	echo ($value == "s") ? "&#66589;" : "";
-	echo ($value == "T") ? "&#66587;" : "";
-	echo ($value == "D") ? "&#66588;" : "";
-	echo ($value == "t") ? "&#66579;" : "";
-	echo ($value == "@") ? "&#66570;" : "";
-	echo ($value == "@r") ? "(?)" : "";
-	echo ($value == "v") ? "&#66586;" : "";
-	echo ($value == "w") ? "&#66574;" : "";
-	echo ($value == "j") ? "&#66575;" : "";
-	echo ($value == "Z") ? "&#66592;" : "";
-	echo ($value == "z") ? "&#66590;" : "";
-	//echo ")<br />";
-} 
 
-//print("<pre>".print_r($data,true)."</pre>");
+}
 
-//echo $userword." is pronounced ".$row[1];
+//echo out results
 
-echo "<br /><br />";
+if ($userInput) {
+
+echo "<br />Input: ".$userInput." (";
+
+echo "<em>";
+foreach ($ipaSentence as $ipaWord) {
+	foreach ($ipaWord as $ipaCharacter) {
+		if ($ipaCharacter) {
+			echo $ipaCharacter."/";
+		}
+	}	
+	echo " ";
+}
+
+echo ")</em><br />Deseret: <h2>";
+
+foreach ($deseretSentence as $deseretWord) {
+	
+	foreach ($deseretWord as $deseretCharacter) {
+		echo $deseretCharacter;
+	}
+	echo " ";
+	
+}
+
+echo "</h2>";
+}
 
 ?>
+</div>
+<br />
+<!-- Place this tag where you want the +1 button to render -->
+<g:plusone></g:plusone>
+
+<!-- Place this render call where appropriate -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=290864004259921";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<div class="fb-like" data-href="http://deseret.in" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+
+<div id="foot">
+	<p>If a word's pronunciation cannot be found, the system will attempt to translate it by letter instead of sound. It will do so poorly.</p>
+	<p>Words that cannot be translated will appear in the standard english alphabet.</p>
+	<p><a href="http://google.com/profiles/samgarfield">CONTACT ME</a></p>
+	<p>This project is available on <a href="https://github.com/sam1am/deseret.in">github</a> and is licensed under <a href="http://www.gnu.org/licenses/gpl-3.0.html">GPL3</a>.
+</div>
+
+</body>
+</html>
