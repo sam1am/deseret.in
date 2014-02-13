@@ -7,11 +7,58 @@ _______________
 ACKNOWLEGEMENTS
 _______________
 
-\##Date:  9-7-94
+The pronunciation database was generated from the Moby Pronunciation List. Some words were added later.   
 
-\##The Carnegie Mellon Pronouncing Dictionary [cmudict.0.2] is Copyright 1993 by Carnegie Mellon University. Use of this dictionary, for any research or commercial purpose, is completely unrestricted.  If you make use of or
-redistribute this material, we would appreciate acknowlegement of its origin.\##
+http://archive.org/stream/mobypronunciatio03205gut/aaREADME.txt
 
+/&/     sounds like the "a" in "dab"  
+/(@)/   sounds like the "a" in "air"  
+/A/     sounds like the "a" in "far"  
+/eI/    sounds like the "a" in "day"  
+/@/     sounds like the "a" in "ado"  
+or the glide "e" in "system" (dipthong schwa)  
+/-/     sounds like the "ir" glide in "tire"  
+or the  "dl" glide in "handle"  
+or the "den" glide in "sodden" (dipthong little schwa)  
+/b/     sounds like the "b" in "nab"  
+/tS/    sounds like the "ch" in "ouch"  
+/d/     sounds like the "d" in "pod"  
+/E/     sounds like the "e" in "red"  
+/i/     sounds like the "e" in "see"  
+/f/     sounds like the "f" in "elf"  
+/g/     sounds like the "g" in "fig"  
+/h/     sounds like the "h" in "had"  
+/hw/    sounds like the "w" in "white"  
+/I/     sounds like the "i" in "hid"  
+/aI/    sounds like the "i" in "ice"  
+/dZ/    sounds like the "g" in "vegetably"  
+/k/     sounds like the "c" in "act"  
+/l/     sounds like the "l" in "ail"  
+/m/     sounds like the "m" in "aim"  
+/N/     sounds like the "ng" in "bang"  
+/n/     sounds like the "n" in "and"  
+/Oi/    sounds like the "oi" in "oil"  
+/A/     sounds like the "o" in "bob"  
+/AU/    sounds like the "ow" in "how"  
+/O/     sounds like the "o" in "dog"  
+/oU/    sounds like the "o" in "boat"  
+/u/     sounds like the "oo" in "too"  
+/U/     sounds like the "oo" in "book"  
+/p/     sounds like the "p" in "imp"  
+/r/     sounds like the "r" in "ire"  
+/S/     sounds like the "sh" in "she"  
+/s/     sounds like the "s" in "sip"  
+/T/     sounds like the "th" in "bath"  
+/D/     sounds like the "th" in "the"  
+/t/     sounds like the "t" in "tap"  
+/@/     sounds like the "u" in "cup"  
+/@r/    sounds like the "u" in "burn"  
+/v/     sounds like the "v" in "average"  
+/w/     sounds like the "w" in "win"  
+/j/     sounds like the "y" in "you"  
+
+/Z/     sounds like the "s" in "vision"  
+/z/     sounds like the "z" in "zoo"  
 
 _______
 LICENSE 
